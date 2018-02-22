@@ -32,5 +32,6 @@ MongoClient.connect('mongodb://localhost:27017/TodoApp',(err,client)=>{
   },(err)=>{
       console.log('unable to fetch data from todos ',err)
   });
+      
   client.close();
 });
