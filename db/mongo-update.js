@@ -15,7 +15,7 @@ MongoClient.connect('mongodb://localhost:27017/TodoApp',(err,client)=>{
   // db.collection('Todos').findOneAndUpdate({
   //   _id:new ObjectID('5a8e6adcba2a350b84815f81')
   // },{
-  //   $set:{  
+  //   $set:{
   //     completed:true
   //   }
   // },
@@ -30,10 +30,10 @@ MongoClient.connect('mongodb://localhost:27017/TodoApp',(err,client)=>{
     db.collection('Users').findOneAndUpdate({
     _id:new ObjectID('5a8edfa41629670a903cc3bf')
   },{
-    $set:{  
+    $set:{
       name:'Payal Kumari'
     },
-    $inc:{  
+    $inc:{
       age:-1
     }
   },
