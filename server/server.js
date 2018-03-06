@@ -23,11 +23,23 @@ app.post('/todos',(req,res)=>{
 
 // get Todos
 app.get('/todos',(req,res)=>{
-	Todo.find().then((doc)=>{
-		res.send(doc);
+	Todo.find().then((todos)=>{
+		res.send({
+			todos:todos
+		});
 	},(err)=>{
-		console.log('unable to find Todos',err)
-	})
+		res.status(400).send(err);
+	});
+});
+
+// get Todos by id
+app.get('/todos/:id',(req,res)=>{
+	const todoId=req.params.id;
+	Todo.findById(todoId).then((doc)=>{
+		res.send(JSON.stringify(doc,undefined,2));
+	},(err)=>{
+		console.log('cannot find id',err);
+	});
 });
 
 // get users
@@ -35,10 +47,9 @@ app.get('/users',(req,res)=>{
 	User.find().then((doc)=>{
 		res.send(doc);
 	},(err)=>{
-		console.log('unable to find Todos',err)
+		console.log('unable to find Todos',err);
 	})
 });
-
 
 app.listen(3000,()=>{
   console.log('started on port 3000');
