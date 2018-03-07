@@ -1,4 +1,6 @@
-var express=require('express');
+const {ObjectID} = require('mongodb');
+
+	var express=require('express');
 var bodyParser=require('body-parser');
 
 var mongoose=require('./db/mongoose.js');
@@ -35,10 +37,21 @@ app.get('/todos',(req,res)=>{
 // get Todos by id
 app.get('/todos/:id',(req,res)=>{
 	const todoId=req.params.id;
-	Todo.findById(todoId).then((doc)=>{
-		res.send(JSON.stringify(doc,undefined,2));
-	},(err)=>{
-		console.log('cannot find id',err);
+	if(!ObjectID.isValid(todoId))
+	{
+	    return res.status(404).send();
+	}
+	Todo.findById(todoId).then((todo)=>{
+		if(!todo)
+		{
+			return res.status(404).send();
+		}
+		else{
+			res.send({todo});
+		}
+		
+	}).catch((err)=>{
+		res.status(400).send();
 	});
 });
 
@@ -51,6 +64,6 @@ app.get('/users',(req,res)=>{
 	})
 });
 
-app.listen(3000,()=>{
-  console.log('started on port 3000');
+app.listen(5000,()=>{
+  console.log('started on port 5000');
 });
