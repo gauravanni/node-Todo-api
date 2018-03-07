@@ -9,6 +9,8 @@ var User=require('./models/user.js');
 
 var app=express();
 
+const port=process.env.PORT || 5000;
+
 app.use(bodyParser.json());
 
 // post Todos
@@ -64,6 +66,6 @@ app.get('/users',(req,res)=>{
 	})
 });
 
-app.listen(5000,()=>{
-  console.log('started on port 5000');
+app.listen(port,()=>{
+  console.log('started on port'+port);
 });
