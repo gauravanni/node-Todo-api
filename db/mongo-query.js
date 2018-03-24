@@ -4,7 +4,7 @@ const mongoose= require('./../server/db/mongoose');
 const Todo = require('./../server/models/todo');
 const User= require('./../server/models/user');
 
-var id='5a9447b2dcc09b12e882f430';
+var id='5a930d6cbb7dee13d0b74b5f';
 
 // if(!ObjectID.isValid(id))
 // {
@@ -23,21 +23,21 @@ var id='5a9447b2dcc09b12e882f430';
 //     console.log(todos);
 // });
 
-// Todo.findById(id).then((todo)=>{
-//     if(!todo){
-//         return console.log('Id is not defined');
-//     }
-//     console.log(todo);
-// }).catch((e)=>console.log(e));
+Todo.findById(id).then((todo)=>{
+    if(!todo){
+        return console.log('Id is not defined');
+    }
+    console.log(todo);
+}).catch((e)=>console.log(e));
 
 
-User.findById(id).then((user)=>{
-if(!user)
-{
-    return console.log('user is not present');
-}
-console.log(user);
-}).catch((err)=>console.log(err));
+// User.findById(id).then((user)=>{
+// if(!user)
+// {
+//     return console.log('user is not present');
+// }
+// console.log(user);
+// }).catch((err)=>console.log(err));
 
 
 
